@@ -17,14 +17,18 @@ webserver_start = threading.Thread(target=webserver_start, name="Ngrok Web Manag
 def main():
     set_clear()
     webserver_start.start()
-    public_admin()
+    admin_tunnel_request = str(input("Do you want to use a Ngrok tunnel for the administration interface? (y or n) "))
+    if admin_tunnel_request == "y":
+        public_admin()
+    else:
+        print(f"Admin interface : http://127.0.0.1:5000")
     tunnel_status()
 
 def public_admin():
     public_tunnel_url = ngrok.connect(5000, "http").public_url
     print(f"Admin interface : {public_tunnel_url.replace('http','https')}")
 
-def conf():
+def config():
     ngrok.set_auth_token("yourtoken")
     conf.get_default().region = "fr"
 
@@ -41,9 +45,6 @@ def type():
 
 def tunnel_status():
     ngrok.get_tunnels()
-
-def authtoken():
-    ngrok.set_auth_token("")
 
 def tunnel_start():
     global tunnel_url

@@ -1,10 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="uft-8">
-    <title>Ngrok Web Manager</title>
-  </head>
-  <body>
-    <h1>Admin Interface</h1>
-  </body>
+   <head>
+      <meta charset="uft-8">
+      <title>Ngrok Web Manager - Dashboard</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.2.0/sweetalert2.min.css" integrity="sha512-xJUrflcxYcNngauImIUGqGQUxMHq3wD7mFKMDUOPyjg0sthw2JUw/AhxrGeoVorVsX1U7e0aUoeo4Cvm7LHGhw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="style.css">
+   </head>
+   <body>
+      <div class="app-container">
+         <div class="app-header">
+            <div class="app-header-left">
+               <span class="app-icon"></span>
+               <p class="app-name">Ngrok Web Manager</p>
+               <div class="search-wrapper">
+                  <input class="search-input" type="text" placeholder="Search in the documentation">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search" viewBox="0 0 24 24">
+                     <defs></defs>
+                     <circle cx="11" cy="11" r="8"></circle>
+                     <path d="M21 21l-4.35-4.35"></path>
+                  </svg>
+               </div>
+            </div>
+            <div class="app-header-right">
+               <button class="mode-switch" title="Switch Theme">
+                  <svg class="moon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="24" height="24" viewBox="0 0 24 24">
+                     <defs></defs>
+                     <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                  </svg>
+               </button>
+               <button class="add-btn" title="Add New Tunnel" onclick="soon()">
+                  <svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus">
+                     <line x1="12" y1="5" x2="12" y2="19" />
+                     <line x1="5" y1="12" x2="19" y2="12" />
+                  </svg>
+               </button>
+               <button class="notification-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-bell">
+                     <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                     <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                  </svg>
+               </button>
+               <button class="profile-btn">
+               <svg viewBox="64 64 896 896" focusable="false" data-icon="user" width="20" height="20" fill="currentColor" aria-hidden="true" style="margin-right: 10px;"><path d="M858.5 763.6a374 374 0 00-80.6-119.5 375.63 375.63 0 00-119.5-80.6c-.4-.2-.8-.3-1.2-.5C719.5 518 760 444.7 760 362c0-137-111-248-248-248S264 225 264 362c0 82.7 40.5 156 102.8 201.1-.4.2-.8.3-1.2.5-44.8 18.9-85 46-119.5 80.6a375.63 375.63 0 00-80.6 119.5A371.7 371.7 0 00136 901.8a8 8 0 008 8.2h60c4.4 0 7.9-3.5 8-7.8 2-77.2 33-149.5 87.8-204.3 56.7-56.7 132-87.9 212.2-87.9s155.5 31.2 212.2 87.9C779 752.7 810 825 812 902.2c.1 4.4 3.6 7.8 8 7.8h60a8 8 0 008-8.2c-1-47.8-10.9-94.3-29.5-138.2zM512 534c-45.9 0-89.1-17.9-121.6-50.4S340 407.9 340 362c0-45.9 17.9-89.1 50.4-121.6S466.1 190 512 190s89.1 17.9 121.6 50.4S684 316.1 684 362c0 45.9-17.9 89.1-50.4 121.6S557.9 534 512 534z"></path></svg>
+               <span>Admin</span>
+               </button>
+            </div>
+            <button class="messages-btn">
+               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-message-circle">
+                  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+               </svg>
+            </button>
+         </div>
+         <div class="app-content">
+            <div class="app-sidebar">
+               <a href="" class="app-sidebar-link active">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                     <polyline points="9 22 9 12 15 12 15 22" />
+                  </svg>
+               </a>
+               <a href="" class="app-sidebar-link">
+                  <svg viewBox="64 64 896 896" focusable="false" data-icon="swap" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M847.9 592H152c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h605.2L612.9 851c-4.1 5.2-.4 13 6.3 13h72.5c4.9 0 9.5-2.2 12.6-6.1l168.8-214.1c16.5-21 1.6-51.8-25.2-51.8zM872 356H266.8l144.3-183c4.1-5.2.4-13-6.3-13h-72.5c-4.9 0-9.5 2.2-12.6 6.1L150.9 380.2c-16.5 21-1.6 51.8 25.1 51.8h696c4.4 0 8-3.6 8-8v-60c0-4.4-3.6-8-8-8z"></path></svg>
+               </a>
+               <a href="" class="app-sidebar-link">
+                  <svg viewBox="64 64 896 896" focusable="false" data-icon="team" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M824.2 699.9a301.55 301.55 0 00-86.4-60.4C783.1 602.8 812 546.8 812 484c0-110.8-92.4-201.7-203.2-200-109.1 1.7-197 90.6-197 200 0 62.8 29 118.8 74.2 155.5a300.95 300.95 0 00-86.4 60.4C345 754.6 314 826.8 312 903.8a8 8 0 008 8.2h56c4.3 0 7.9-3.4 8-7.7 1.9-58 25.4-112.3 66.7-153.5A226.62 226.62 0 01612 684c60.9 0 118.2 23.7 161.3 66.8C814.5 792 838 846.3 840 904.3c.1 4.3 3.7 7.7 8 7.7h56a8 8 0 008-8.2c-2-77-33-149.2-87.8-203.9zM612 612c-34.2 0-66.4-13.3-90.5-37.5a126.86 126.86 0 01-37.5-91.8c.3-32.8 13.4-64.5 36.3-88 24-24.6 56.1-38.3 90.4-38.7 33.9-.3 66.8 12.9 91 36.6 24.8 24.3 38.4 56.8 38.4 91.4 0 34.2-13.3 66.3-37.5 90.5A127.3 127.3 0 01612 612zM361.5 510.4c-.9-8.7-1.4-17.5-1.4-26.4 0-15.9 1.5-31.4 4.3-46.5.7-3.6-1.2-7.3-4.5-8.8-13.6-6.1-26.1-14.5-36.9-25.1a127.54 127.54 0 01-38.7-95.4c.9-32.1 13.8-62.6 36.3-85.6 24.7-25.3 57.9-39.1 93.2-38.7 31.9.3 62.7 12.6 86 34.4 7.9 7.4 14.7 15.6 20.4 24.4 2 3.1 5.9 4.4 9.3 3.2 17.6-6.1 36.2-10.4 55.3-12.4 5.6-.6 8.8-6.6 6.3-11.6-32.5-64.3-98.9-108.7-175.7-109.9-110.9-1.7-203.3 89.2-203.3 199.9 0 62.8 28.9 118.8 74.2 155.5-31.8 14.7-61.1 35-86.5 60.4-54.8 54.7-85.8 126.9-87.8 204a8 8 0 008 8.2h56.1c4.3 0 7.9-3.4 8-7.7 1.9-58 25.4-112.3 66.7-153.5 29.4-29.4 65.4-49.8 104.7-59.7 3.9-1 6.5-4.7 6-8.7z"></path></svg>
+               </a>
+               <a href="" class="app-sidebar-link">
+                  <svg class="link-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-settings" viewBox="0 0 24 24">
+                     <defs />
+                     <circle cx="12" cy="12" r="3" />
+                     <path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
+                  </svg>
+               </a>
+            </div>
+            <div class="ngroks-section">
+               <div class="ngroks-section-header">
+                  <p>Tunnels in operation</p>
+                  <p class="time" id="today">Js Error</p>
+               </div>
+               <div class="ngroks-section-line">
+                  <div class="ngroks-status">
+                     <div class="item-status">
+                        <span class="status-number">45</span>
+                        <span class="status-type">HTTP</span>
+                     </div>
+                     <div class="item-status">
+                        <span class="status-number">24</span>
+                        <span class="status-type">TCP</span>
+                     </div>
+                     <div class="item-status">
+                        <span class="status-number">62</span>
+                        <span class="status-type">TLS</span>
+                     </div>
+                  </div>
+                  <div class="view-actions">
+                     <button class="view-btn list-view" title="List View">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list">
+                           <line x1="8" y1="6" x2="21" y2="6" />
+                           <line x1="8" y1="12" x2="21" y2="12" />
+                           <line x1="8" y1="18" x2="21" y2="18" />
+                           <line x1="3" y1="6" x2="3.01" y2="6" />
+                           <line x1="3" y1="12" x2="3.01" y2="12" />
+                           <line x1="3" y1="18" x2="3.01" y2="18" />
+                        </svg>
+                     </button>
+                     <button class="view-btn grid-view active" title="Grid View">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-grid">
+                           <rect x="3" y="3" width="7" height="7" />
+                           <rect x="14" y="3" width="7" height="7" />
+                           <rect x="14" y="14" width="7" height="7" />
+                           <rect x="3" y="14" width="7" height="7" />
+                        </svg>
+                     </button>
+                  </div>
+               </div>
+               <div class="ngrok-boxes jsGridView">
+                  <div class="ngrok-tunnels-box-wrapper">
+                     <div class="ngrok-box" style="background-color: #fee4cb;">
+                        <div class="ngrok-box-header">
+                           <span>Active since: 30sec</span>
+                           <div class="more-wrapper">
+                              <button class="ngrok-btn-more">
+                                 <svg version="1.1" width="24" height="24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 122.88 122.88" style="enable-background:new 0 0 122.88 122.88" xml:space="preserve"><style type="text/css">.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#6BBE66;}</style><g><path class="st0" d="M61.44,0c33.93,0,61.44,27.51,61.44,61.44c0,33.93-27.51,61.44-61.44,61.44C27.51,122.88,0,95.37,0,61.44 C0,27.51,27.51,0,61.44,0L61.44,0z"></path></g></svg>
+                              </button>
+                           </div>
+                        </div>
+                        <div class="ngrok-box-content-header">
+                           <p class="box-content-header">Nom du tunnel</p>
+                           <p class="box-content-subheader">SSH</p>
+                        </div>
+                        <div class="box-progress-wrapper">
+                           <a href="ngrok.io" style="text-decoration: none; color: #1853db;" target="_blank"><p class="box-progress-header">ndzdzdzdzdgrokurl.ngrok.io</p></a><br><br>
+                           <p class="box-progress-percentage">Port : 22</p>
+                        </div>
+                        <div class="ngrok-box-footer">
+                           <div class="participants">
+                              <button class="add-participant" style="color: #ff942e;">
+                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="12" height="12"><linearGradient id="hbE9Evnj3wAjjA2RX0We2a" x1="7.534" x2="27.557" y1="7.534" y2="27.557" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#f44f5a"></stop><stop offset=".443" stop-color="#ee3d4a"></stop><stop offset="1" stop-color="#e52030"></stop></linearGradient><path fill="url(#hbE9Evnj3wAjjA2RX0We2a)" d="M42.42,12.401c0.774-0.774,0.774-2.028,0-2.802L38.401,5.58c-0.774-0.774-2.028-0.774-2.802,0	L24,17.179L12.401,5.58c-0.774-0.774-2.028-0.774-2.802,0L5.58,9.599c-0.774,0.774-0.774,2.028,0,2.802L17.179,24L5.58,35.599	c-0.774,0.774-0.774,2.028,0,2.802l4.019,4.019c0.774,0.774,2.028,0.774,2.802,0L42.42,12.401z"></path><linearGradient id="hbE9Evnj3wAjjA2RX0We2b" x1="27.373" x2="40.507" y1="27.373" y2="40.507" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#a8142e"></stop><stop offset=".179" stop-color="#ba1632"></stop><stop offset=".243" stop-color="#c21734"></stop></linearGradient><path fill="url(#hbE9Evnj3wAjjA2RX0We2b)" d="M24,30.821L35.599,42.42c0.774,0.774,2.028,0.774,2.802,0l4.019-4.019	c0.774-0.774,0.774-2.028,0-2.802L30.821,24L24,30.821z"></path></svg>
+                              </button>
+                           </div>
+                           <div class="days-left" style="color: #ff942e;">
+                              Up
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="messages-section">
+               <button class="messages-close">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-circle">
+                     <circle cx="12" cy="12" r="10" />
+                     <line x1="15" y1="9" x2="9" y2="15" />
+                     <line x1="9" y1="9" x2="15" y2="15" />
+                  </svg>
+               </button>
+               <div class="ngroks-section-header">
+                  <p>Ngrok logs</p>
+               </div>
+               <div class="messages">
+                  <div class="message-box">
+                     <svg viewBox="64 64 896 896" focusable="false" data-icon="thunderbolt" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M848 359.3H627.7L825.8 109c4.1-5.3.4-13-6.3-13H436c-2.8 0-5.5 1.5-6.9 4L170 547.5c-3.1 5.3.7 12 6.9 12h174.4l-89.4 357.6c-1.9 7.8 7.5 13.3 13.3 7.7L853.5 373c5.2-4.9 1.7-13.7-5.5-13.7zM378.2 732.5l60.3-241H281.1l189.6-327.4h224.6L487 427.4h211L378.2 732.5z"></path></svg>
+                     <div class="message-content">
+                        <div class="message-header">
+                           <div class="name">Ngrok service</div>
+                           <div class="star-checkbox">
+                              <input type="checkbox" id="star-1">
+                              <label for="star-1">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-star">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                                 </svg>
+                              </label>
+                           </div>
+                        </div>
+                        <p class="message-line">
+                           Something...
+                        </p>
+                        <p class="message-line time">
+                           Not, now
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.2.0/sweetalert2.min.js" integrity="sha512-BbhEY8ZvF5TicBw3nIPE5QA4tgPjQ8C3fIiY9c4UBSaRBmvFcY/qOD3FIBa30oBRbN6h/+KjzEMHGqI9tnbSIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script  src="script.js"></script>
+   </body>
 </html>
