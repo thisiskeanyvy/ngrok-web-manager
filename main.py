@@ -17,7 +17,7 @@ webserver_start = threading.Thread(target=webserver_start, name="Ngrok Web Manag
 def main():
     set_clear()
     webserver_start.start()
-    admin_tunnel_request = str(input("Do you want to use a Ngrok tunnel for the administration interface? (y or n) "))
+    admin_tunnel_request = str(input("Do you want to use an Ngrok tunnel for the administration interface? (y or n) "))
     if admin_tunnel_request == "y":
         public_admin()
     else:
